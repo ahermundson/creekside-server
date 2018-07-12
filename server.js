@@ -109,7 +109,7 @@ app.post('/forgot-password', async (req, res) => {
     service: 'gmail',
     auth: {
       user: 'alex.hermundson@gmail.com',
-      pass: 'stpgqmcustjynypo'
+      pass: process.env.NODEMAIL_PASS
     }
   });
 
