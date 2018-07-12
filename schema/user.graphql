@@ -1,0 +1,41 @@
+type User {
+  _id: ID!
+  email: String!
+  first_name: String!
+  last_name: String!
+  isAdmin: Boolean!
+  username: String!
+  test: String
+}
+
+type AddUserResponse {
+  ok: Boolean!
+  user: User
+  errors: [Error!]
+}
+
+type Query {
+  getUser(username: String!): User!
+  allUsers: [User!]!
+}
+
+type LoginResponse {
+  ok: Boolean!
+  token: String
+  refreshToken: String
+  user: User
+  errors: [Error!]
+}
+
+type Mutation {
+  addUser(
+    email: String!
+    first_name: String!
+    last_name: String!
+    isAdmin: Boolean!
+    username: String!
+    password: String!
+  ): AddUserResponse!
+  login(email: String!, password: String!): LoginResponse
+  updatePassword(password: String!, token: String!, _id: ID!): Boolean!
+}

@@ -1,0 +1,41 @@
+scalar DateTime
+scalar Date
+
+type TimeClock {
+  punched_in: DateTime!
+  punched_out: DateTime!
+  active_timeclock: Boolean!
+  user: User!
+}
+
+type Query {
+  allTimeClocks: [TimeClock!]!
+  getUserTimeClocks(id: ID!): [TimeClock!]!
+  getActiveUserTimeClock: ActiveTimeClockResponse
+}
+
+input StartTimeClockInput {
+  punched_in: DateTime!
+  user_id: ID!
+  active_timeclock: Boolean!
+}
+
+type StartTimeClockResponse {
+  ok: Boolean!
+  timeclock: TimeClock
+  errors: [Error!]
+}
+
+type ActiveTimeClockResponse {
+  hasActiveTimeClock: Boolean!
+  timeclock: TimeClock
+}
+
+type Mutation {
+  startTimeClock(
+    user_id: ID!
+    active_timeclock: Boolean!
+    punched_in: Date!
+  ): StartTimeClockResponse!
+  stopTimeClock: Boolean!
+}

@@ -1,0 +1,12 @@
+type Location {
+  _id: ID!
+  type: String!
+  propertyName: String!
+  streetAddress: String!
+  city: String!
+  zip: String!
+}
+
+type Query {
+  getLocations: [Location!]!
+}
